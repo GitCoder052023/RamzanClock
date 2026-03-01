@@ -1,17 +1,7 @@
 import { useState, useEffect } from 'react';
 import { differenceInSeconds, isAfter, parseISO, addDays, format } from 'date-fns';
 import { RAMADAN_DATA_2026 } from '@/constants/ramadan-data';
-import type { RamadanDay } from '@/constants/ramadan-data';
-
-export interface RamadanState {
-  today: RamadanDay | null;
-  nextEvent: {
-    type: 'Sehri' | 'Iftar';
-    time: string;
-    remainingSeconds: number;
-  } | null;
-  forecast: RamadanDay[];
-}
+import type { RamadanState, RamadanEvent } from '@/types/ramadan';
 
 export const useRamadan = () => {
   const [state, setState] = useState<RamadanState>({
@@ -38,7 +28,7 @@ export const useRamadan = () => {
       const sehriTime = parseISO(`${todayData.date}T${todayData.sehri}:00`);
       const iftarTime = parseISO(`${todayData.date}T${todayData.iftar}:00`);
 
-      let nextEvent: RamadanState['nextEvent'] = null;
+      let nextEvent: RamadanEvent | null = null;
 
       if (!isAfter(nowIst, sehriTime)) {
         nextEvent = {
