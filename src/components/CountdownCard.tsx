@@ -1,16 +1,14 @@
 import { motion } from 'framer-motion';
-import { Sun, Moon, Clock } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 import { formatTime, formatSeconds } from '@/utils/time';
 import type { RamadanDay, RamadanEvent } from '@/types/ramadan';
 
 interface CountdownCardProps {
   today: RamadanDay;
   nextEvent: RamadanEvent;
-  use12Hour: boolean;
-  onToggleFormat: () => void;
 }
 
-export const CountdownCard = ({ today, nextEvent, use12Hour, onToggleFormat }: CountdownCardProps) => {
+export const CountdownCard = ({ today, nextEvent }: CountdownCardProps) => {
   const { h, m, s } = formatSeconds(nextEvent.remainingSeconds);
 
   return (
@@ -25,13 +23,6 @@ export const CountdownCard = ({ today, nextEvent, use12Hour, onToggleFormat }: C
           <p className="text-xs uppercase tracking-[0.2em] font-bold opacity-40">
             Remaining for {nextEvent.type}
           </p>
-          <button 
-            onClick={onToggleFormat}
-            className="p-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors group"
-            title="Switch time format"
-          >
-            <Clock className="w-3.5 h-3.5 opacity-30 group-hover:opacity-60 transition-opacity" />
-          </button>
         </div>
         
         <div className="flex items-baseline gap-2 mb-8">
@@ -67,14 +58,14 @@ export const CountdownCard = ({ today, nextEvent, use12Hour, onToggleFormat }: C
               <Sun className="w-3 h-3" />
               <p className="text-[10px] uppercase font-bold tracking-widest">Sehri Ends</p>
             </div>
-            <p className="text-xl font-medium">{formatTime(today.sehri, use12Hour)}</p>
+            <p className="text-xl font-medium">{formatTime(today.sehri)}</p>
           </div>
           <div className="space-y-1">
             <div className="flex items-center gap-1.5 opacity-40">
               <Moon className="w-3 h-3" />
               <p className="text-[10px] uppercase font-bold tracking-widest">Iftar Starts</p>
             </div>
-            <p className="text-xl font-medium">{formatTime(today.iftar, use12Hour)}</p>
+            <p className="text-xl font-medium">{formatTime(today.iftar)}</p>
           </div>
         </div>
       </div>

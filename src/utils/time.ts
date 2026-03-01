@@ -1,8 +1,8 @@
 import { format, parse } from 'date-fns';
 
-export const formatTime = (timeStr: string, use12Hour: boolean) => {
+export const formatTime = (timeStr: string) => {
   const date = parse(timeStr, 'HH:mm', new Date());
-  return use12Hour ? format(date, 'h:mm a') : timeStr;
+  return format(date, 'h:mm a');
 };
 
 export const formatSeconds = (seconds: number) => {

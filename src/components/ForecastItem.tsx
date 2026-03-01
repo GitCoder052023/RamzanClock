@@ -7,10 +7,9 @@ import type { RamadanDay } from '@/types/ramadan';
 interface ForecastItemProps {
   day: RamadanDay;
   idx: number;
-  use12Hour: boolean;
 }
 
-export const ForecastItem = ({ day, idx, use12Hour }: ForecastItemProps) => (
+export const ForecastItem = ({ day, idx }: ForecastItemProps) => (
   <motion.div
     initial={{ x: -10, opacity: 0 }}
     animate={{ x: 0, opacity: 1 }}
@@ -31,11 +30,11 @@ export const ForecastItem = ({ day, idx, use12Hour }: ForecastItemProps) => (
     <div className="flex gap-6 text-right">
       <div>
         <p className="text-[9px] uppercase font-bold opacity-30 tracking-widest">Sehri</p>
-        <p className="text-sm font-medium">{formatTime(day.sehri, use12Hour)}</p>
+        <p className="text-sm font-medium">{formatTime(day.sehri)}</p>
       </div>
       <div>
         <p className="text-[9px] uppercase font-bold opacity-30 tracking-widest">Iftar</p>
-        <p className="text-sm font-medium">{formatTime(day.iftar, use12Hour)}</p>
+        <p className="text-sm font-medium">{formatTime(day.iftar)}</p>
       </div>
     </div>
   </motion.div>
