@@ -46,7 +46,7 @@ export const CountdownCard = ({ today, nextEvent }: CountdownCardProps) => {
           <span className="text-5xl font-extralight opacity-20">:</span>
           <motion.span 
             key={s}
-            className="text-5xl font-light tabular-nums opacity-60"
+            className="text-7xl font-light tabular-nums opacity-60"
           >
             {s}
           </motion.span>
